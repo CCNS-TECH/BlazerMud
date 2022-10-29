@@ -1,0 +1,101 @@
+﻿@page "/"
+@layout EmptyLayout
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-10">
+    <MudGrid>
+        <MudItem xs="7">
+
+            <div class="ml-10">
+                <MudText Typo="Typo.h2" Color="Color.Primary" Style="font-weight:bolder">We care</MudText>
+                <MudText Typo="Typo.h2" Color="Color.Inherit" Style="font-weight:bolder">about your health</MudText>
+                <MudText>Good health is the state of mental, physical and social well being</MudText>
+                <MudText>and it does not just mean absence of diseases</MudText>
+
+            </div>
+            
+            @*<MudImage ObjectFit="ObjectFit.Cover" Src="../../Images/Logo/hospital-building.jpeg" Alt="Swedish Farm House" Style="width:100%;height:105%"/>*@
+        </MudItem>
+        <MudItem xs="4">
+            <MudPaper Class="align-center justify-center mud-width-full py-8 pl-8 pr-8 rounded-xl" Elevation="5">
+                <div class="d-flex flex-column flex-column justify-center" style="height: 80vh;">
+                    <MudText Typo="Typo.h5" Class="mx-auto" Style="font-weight:bolder">CCNS System Management</MudText>
+                    <MudForm @ref="form">
+                        <MudTextField T="string"
+                                      Label="Amount"
+                                      Variant="Variant.Outlined"
+                                      Adornment="Adornment.Start"
+                                      AdornmentIcon="@Icons.Material.Filled.SupervisedUserCircle"
+                                      AdornmentColor="Color.Primary"
+                                      OnAdornmentClick="ButtonTestclick"
+                                      Required="true"
+                                      RequiredError="User name is required!"
+                                      Class="rounded-xl"/>
+                        <MudTextField T="string"
+                                      Label="Password"
+                                      Variant="Variant.Outlined"
+                                      Adornment="Adornment.Start"
+                                      InputType="@PasswordInput"
+                                      AdornmentIcon="@Icons.Material.Filled.Key"
+                                      OnAdornmentClick="ButtonTestclick"
+                                      Required="true"
+                                      RequiredError="Password is required!" />
+
+                        <div class="d-flex align-center justify-space-between pt-2">
+                            <MudButton Variant="Variant.Filled"
+                                       Color="Color.Primary"
+                                       Size="Size.Large"
+                                       Class="ml-auto py-3 rounded-pill"
+                                       FullWidth="true">Register</MudButton>
+                        </div>
+                    </MudForm>
+                </div>
+            </MudPaper>
+        </MudItem>
+
+    </MudGrid>
+</MudContainer>
+@code{
+    MudForm form;
+    bool isShow;
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+    void ButtonTestclick()
+    {
+        @if (isShow)
+        {
+            isShow = false;
+            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+            PasswordInput = InputType.Password;
+        }
+        else {
+            isShow = true;
+            PasswordInputIcon = Icons.Material.Filled.Visibility;
+            PasswordInput = InputType.Text;
+        }
+    }
+}
+
+<style>
+    .bg_color {
+        background: linear-gradient(186deg, rgb(18 7 82) 0%, rgb(29 64 247) 68%, rgba(148,152,190,1) 100%);
+        height: 100vh;
+    }
+
+    .h_center {
+        margin: auto;
+        top: 45%;
+        position: relative;
+        transform: translateY(-50%);
+    }
+
+    .c_litle {
+        font-size: xx-large;
+        color: white;
+    }
+
+    @@media (max-width: 576px) {
+        .bg_img {
+            display: none;
+        }
+    }
+</style>
